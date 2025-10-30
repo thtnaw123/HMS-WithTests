@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct PatientModelTranserO{
+struct PatientUIObject{
     var id:String
     var name:String
     var age:String

@@ -28,7 +28,7 @@ class AddPatientViewController: UIViewController {
     
     @IBAction func addPatientAction(_ sender: Any) {
         errorMessage.text = ""
-        let newPatient = PatientModelTranserO(
+        let newPatient = PatientUIObject(
             id:patientIdField.text ?? "" ,
             name: patientNameField.text ?? "",
             age: patientAgeField.text ?? "",

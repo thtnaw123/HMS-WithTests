@@ -12,12 +12,6 @@ extension PatientListViewController:PatientListTableViewCellDelgate{
         if let destVC = routeToPage(identifier: "UpdatePatientViewController") as? UpdatePatientViewController{
             destVC.targetPatient = patient
             destVC.updatePatientController.patientViewModel = self.patientViewModel
-                    
-            destVC.updatePatientController.patientViewModel.onPatientChanged = { [weak self] in
-                        DispatchQueue.main.async {
-                            self?.patientListTableView.reloadData()
-                        }
-                    }
             navigationController?.pushViewController(destVC, animated: true)
         }
     }
@@ -30,9 +24,6 @@ extension PatientListViewController:PatientListTableViewCellDelgate{
         let alert = UIAlertController(title: "confirm delete", message: "Are You Sure You wanna delete \(patient.name)?", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler:{ _ in
-            self.patientViewModel.onPatientChanged = {[weak self] in
-                self?.patientListTableView.reloadData()
-            }
             self.patientViewModel.deletePatient(patientToBeDeleted: patient)
         }))
         

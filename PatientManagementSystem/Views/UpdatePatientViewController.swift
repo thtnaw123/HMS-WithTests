@@ -38,7 +38,7 @@ class UpdatePatientViewController: UIViewController {
     
     @IBAction func updatePatientAction(_ sender: Any) {
         errorMessage.text = ""
-        let updatedPatient = PatientModelTranserO(
+        let updatedPatient = PatientUIObject(
             id: String(targetPatient?.id ?? 0) ,
             name: patientNameField.text ?? "",
             age: patientAgeField.text ?? "",

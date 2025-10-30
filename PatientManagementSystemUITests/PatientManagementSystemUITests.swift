@@ -58,17 +58,6 @@ final class PatientManagementSystemUITests: XCTestCase {
         
     }
     
-    @MainActor
-    func testAppAddNewPatientWithEmptyName() throws {
-        let app = XCUIApplication()
-        app.activate()
-        app/*@START_MENU_TOKEN@*/.buttons["AddNewPatientButtonId"]/*[[".otherElements",".buttons[\"add\"]",".buttons[\"AddNewPatientButtonId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
-        app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
-        app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"44343\"]",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("44343")
-        app/*@START_MENU_TOKEN@*/.buttons["AddPatientButtonId"]/*[[".buttons.containing(.staticText, identifier: \"Add Patient\")",".otherElements",".buttons[\"Add Patient\"]",".buttons[\"AddPatientButtonId\"]"],[[[-1,3],[-1,2],[-1,1,1],[-1,0]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
-
-
-    }
     
     @MainActor
     func testAppAddNewPatient() throws {
@@ -117,6 +106,17 @@ final class PatientManagementSystemUITests: XCTestCase {
         element.tap()
         app.buttons.matching(identifier: "EditPatientButton").element(boundBy: 1).tap()
         element.tap()
+    }
+    
+    @MainActor
+    func testAppAddNewPatientWithEmptyName() throws {
+        let app = XCUIApplication()
+        app.activate()
+        app/*@START_MENU_TOKEN@*/.buttons["AddNewPatientButtonId"]/*[[".otherElements",".buttons[\"add\"]",".buttons[\"AddNewPatientButtonId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"44343\"]",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("44343")
+        app/*@START_MENU_TOKEN@*/.buttons["AddPatientButtonId"]/*[[".buttons.containing(.staticText, identifier: \"Add Patient\")",".otherElements",".buttons[\"Add Patient\"]",".buttons[\"AddPatientButtonId\"]"],[[[-1,3],[-1,2],[-1,1,1],[-1,0]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+
     }
     
     

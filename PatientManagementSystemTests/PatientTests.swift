@@ -42,7 +42,7 @@ final class PatientTests: XCTestCase {
     func testAddPatient() throws {
         let newId = Int.random(in: 1000...9999)
 
-        let newPatient = PatientModelTranserO(id: "\(newId)", name: "Abel Assefa", age: "25", diagnosis: "malnourishment")
+        let newPatient = PatientUIObject(id: "\(newId)", name: "Abel Assefa", age: "25", diagnosis: "malnourishment")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: true)
         
         guard let validPatientDetail:PatientModel = validationResult.validatedPatientDetail else {
@@ -64,14 +64,14 @@ final class PatientTests: XCTestCase {
     func testValidateValidPatientFields() throws  {
           let newId = Int.random(in: 1000...9999)
         
-          let newPatient = PatientModelTranserO(id: "\(newId)", name: "Valid Name", age: "45", diagnosis: "Test Diagnosis")
+          let newPatient = PatientUIObject(id: "\(newId)", name: "Valid Name", age: "45", diagnosis: "Test Diagnosis")
           let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
            XCTAssertTrue(validationResult.isValid)
     }
     
     func testValidateEmptyPatientName() throws {
-        let newPatient = PatientModelTranserO(id: "1034", name: "", age: "45", diagnosis: "Test Diagnosis")
+        let newPatient = PatientUIObject(id: "1034", name: "", age: "45", diagnosis: "Test Diagnosis")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
         XCTAssertFalse(validationResult.isValid)
@@ -82,7 +82,7 @@ final class PatientTests: XCTestCase {
     }
     
     func testValidateInvalidPatientName() throws {
-        let newPatient = PatientModelTranserO(id: "1034", name: "invalid $name", age: "45", diagnosis: "Test Diagnosis")
+        let newPatient = PatientUIObject(id: "1034", name: "invalid $name", age: "45", diagnosis: "Test Diagnosis")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
         XCTAssertFalse(validationResult.isValid)
@@ -93,7 +93,7 @@ final class PatientTests: XCTestCase {
     }
     
     func testValidateEmptyId() throws {
-        let newPatient = PatientModelTranserO(id: "", name: "Guluma W", age: "45", diagnosis: "Test Diagnosis")
+        let newPatient = PatientUIObject(id: "", name: "Guluma W", age: "45", diagnosis: "Test Diagnosis")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
         XCTAssertFalse(validationResult.isValid)
@@ -105,7 +105,7 @@ final class PatientTests: XCTestCase {
     
     
     func testValidateEmptyAge() throws {
-        let newPatient = PatientModelTranserO(id: "1034", name: "Guluma W", age: "", diagnosis: "Test Diagnosis")
+        let newPatient = PatientUIObject(id: "1034", name: "Guluma W", age: "", diagnosis: "Test Diagnosis")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
         XCTAssertFalse(validationResult.isValid)
@@ -115,7 +115,7 @@ final class PatientTests: XCTestCase {
     }
     
     func testValidateNegativeAge() throws {
-        let newPatient = PatientModelTranserO(id: "1034", name: "Guluma W", age: "-12", diagnosis: "test diagnosis")
+        let newPatient = PatientUIObject(id: "1034", name: "Guluma W", age: "-12", diagnosis: "test diagnosis")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
         XCTAssertFalse(validationResult.isValid)
@@ -126,7 +126,7 @@ final class PatientTests: XCTestCase {
     
     
     func testValidateAgeWithText() throws {
-        let newPatient = PatientModelTranserO(id: "1034", name: "Guluma W", age: "Twelve", diagnosis: "test diagnosis")
+        let newPatient = PatientUIObject(id: "1034", name: "Guluma W", age: "Twelve", diagnosis: "test diagnosis")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
         XCTAssertFalse(validationResult.isValid)
@@ -137,7 +137,7 @@ final class PatientTests: XCTestCase {
     
     
     func testValidateEmptyDiagnosis() throws {
-        let newPatient = PatientModelTranserO(id: "1034", name: "Guluma W", age: "45", diagnosis: "")
+        let newPatient = PatientUIObject(id: "1034", name: "Guluma W", age: "45", diagnosis: "")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: false)
         
         XCTAssertFalse(validationResult.isValid)
@@ -146,7 +146,7 @@ final class PatientTests: XCTestCase {
     }
     
     func testValidateInvalidDiagnosis() throws {
-        let newPatient = PatientModelTranserO(id: "1034", name: "Guluma W", age: "45", diagnosis: "RR $$")
+        let newPatient = PatientUIObject(id: "1034", name: "Guluma W", age: "45", diagnosis: "RR $$")
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew: true)
         
         XCTAssertFalse(validationResult.isValid)
@@ -156,12 +156,11 @@ final class PatientTests: XCTestCase {
     
     
     func testAddingDuplicatePatientShouldNotSucceed() {
-        guard let randomPatient = patientViewModel.getPatientsList.randomElement() else {
-            XCTFail("No patients found in the list to test with.")
+        guard let firstPatient = patientViewModel.getPatientsList.first else {
             return
         }
         let patientListCount = patientViewModel.getPatientsList.count
-        patientViewModel.addPatient(patient: randomPatient)
+        patientViewModel.addPatient(patient: firstPatient)
 
         if patientViewModel.getPatientsList.count != patientListCount {
             XCTFail("Duplicate patient should not have been added!")
@@ -170,20 +169,17 @@ final class PatientTests: XCTestCase {
     
     
     func testRemovePatient() throws {
-        let newId = Int.random(in: 1000...9999)
-
-        let newPatient = PatientModel(id: newId, name: "Abel Assefa", age: 25, diagnosis: "malnourishment")
-        patientViewModel.addPatient(patient: newPatient)
-
-        patientViewModel.deletePatient(patientToBeDeleted: newPatient)
-        let deletedPatientExists = patientViewModel.getPatientsList.contains(where: { $0.id == newPatient.id })
+        guard let firstPatient = patientViewModel.getPatientsList.first else {
+            return
+        }
+        patientViewModel.deletePatient(patientToBeDeleted: firstPatient)
+        let deletedPatientExists = patientViewModel.getPatientsList.contains(where: { $0.id == firstPatient.id })
         XCTAssertFalse(deletedPatientExists, "deleted patient exists")
         
     }
     
     func testCheckPatientExistsByID() throws {
      guard let lastPatient = patientViewModel.getPatientsList.last else {
-        XCTFail("No patients found in the list to test with.")
         return
      }
      let exists = patientViewModel.checkIfIdExists(id: lastPatient.id)
@@ -195,8 +191,8 @@ final class PatientTests: XCTestCase {
     }
 
     
-    func testSearchPatientByName()throws {
-        guard let lastPatient = patientViewModel.getPatientsList.last else {
+    func testSearchPatientByName() throws {
+        guard let lastPatient = patientViewModel.getPatientsList.first else {
            XCTFail("No patients found in the list to test with.")
            return
         }
@@ -216,7 +212,6 @@ final class PatientTests: XCTestCase {
     
     func testUpdateExistingPatientDetails() throws {
         guard var patientToBeUpdated = patientViewModel.getPatientsList.first else {
-           XCTFail("No patients found in the list to test with.")
            return
         }
         

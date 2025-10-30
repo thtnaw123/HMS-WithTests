@@ -17,7 +17,7 @@ class AddPatientController{
         self.patientViewModel = patientViewModel
     }
     
-    func addNewPatient(newPatient:PatientModelTranserO){
+    func addNewPatient(newPatient:PatientUIObject){
         
         let validationResult = patientViewModel.validatePatientFields(newPatient: newPatient, isAddNew:true)
         

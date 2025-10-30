@@ -16,7 +16,7 @@ class UpdatePatientController{
            self.patientViewModel = viewModel
        }
     
-    func updatePatient(updatedPatient:PatientModelTranserO){
+    func updatePatient(updatedPatient:PatientUIObject){
         guard let pId = Int(updatedPatient.id)else{return}
         let validationResult = patientViewModel.validatePatientFields(newPatient: updatedPatient, isAddNew:false)
         

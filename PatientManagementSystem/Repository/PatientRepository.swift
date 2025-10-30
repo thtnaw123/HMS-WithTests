@@ -75,11 +75,6 @@ final class PatientDataRepository {
             } catch {
                 print("Delete error: \(error)")
             }
-        }
-    
-    
-    
-    
-    
+        } 
 
 }

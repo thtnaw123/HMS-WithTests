@@ -33,7 +33,7 @@ class PatientViewModel{
     }
     
     func addPatient(patient:PatientModel){
-        let res = validatePatientFields(newPatient: PatientModelTranserO(id: String(patient.id), name: patient.name, age: String(patient.age), diagnosis: patient.diagnosis), isAddNew: false)
+        let res = validatePatientFields(newPatient: PatientUIObject(id: String(patient.id), name: patient.name, age: String(patient.age), diagnosis: patient.diagnosis), isAddNew: false)
        
         guard !checkIfIdExists(id: patient.id), res.isValid else{
             return
@@ -79,7 +79,7 @@ class PatientViewModel{
     
     
     func validatePatientFields(
-        newPatient:PatientModelTranserO, isAddNew:Bool
+        newPatient:PatientUIObject, isAddNew:Bool
     ) -> (isValid: Bool, validatedPatientDetail:PatientModel?, errorMessage: String) {
         //id
         let idResult = validateNumbers(number: newPatient.id, fieldName: "Patient ID")

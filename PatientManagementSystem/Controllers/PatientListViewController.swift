@@ -28,6 +28,8 @@ class PatientListViewController: UIViewController {
         super.viewDidLoad()
         setUpTableView()
         setupSearchController()
+        setUpClosureBinding()
+        
     }
     
     @IBAction func changeTheme(_ sender: Any) {
@@ -43,11 +45,7 @@ class PatientListViewController: UIViewController {
 //                .onDidAdd = { [weak self] in
 //                self?.patientListTableView.reloadData()
 //            }
-            
-            destinationVC.addPatientController.patientViewModel
-                .onPatientChanged = { [weak self] in
-                self?.patientListTableView.reloadData()
-            }
+    
             navigationController?.pushViewController(destinationVC, animated: true)
         }
     }
@@ -59,6 +57,11 @@ class PatientListViewController: UIViewController {
         patientListTableView.delegate = self
     }
     
+    func setUpClosureBinding(){
+        patientViewModel.onPatientChanged = { [weak self] in
+            self?.patientListTableView.reloadData()
+        }
+    }
     
     func routeToPage(identifier:String) -> UIViewController? {
         if let destinationVC = storyboard?.instantiateViewController(withIdentifier: identifier){
