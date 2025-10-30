@@ -9,16 +9,13 @@ import UIKit
 
 
 class PatientViewModel{
-    var patientRepository = PatientRepository.shared;
-    var patientList:[PatientModel] = []
+    var patientRepository = PatientDataRepository.shared;
+    private var patientList:[PatientModel] = []
     var filteredPatientList:[PatientModel] = []
     
     var getPatientsList:[PatientModel] {patientRepository.getPatients()}
-    
-    var onPatientAdded: (() -> Void)?
-    var onPatientUpdated: (() -> Void)?
-    var onPatientDeleted: (() -> Void)?
-    var onPatientSearched: (() -> Void)?
+
+    var onPatientChanged: (()-> Void)?
     let validator = Validator()
 
 
@@ -27,9 +24,6 @@ class PatientViewModel{
     }
     
     func initRepository(){
-        if getPatientsList.isEmpty{
-            patientRepository.initList(patientList:patientRepository.patientListSeedData)
-        }
         patientList = getPatientsList
         filteredPatientList = patientList
     }
@@ -39,13 +33,16 @@ class PatientViewModel{
     }
     
     func addPatient(patient:PatientModel){
-        guard !checkIfIdExists(id: patient.id) else{
+        let res = validatePatientFields(newPatient: PatientModelTranserO(id: String(patient.id), name: patient.name, age: String(patient.age), diagnosis: patient.diagnosis), isAddNew: false)
+       
+        guard !checkIfIdExists(id: patient.id), res.isValid else{
             return
         }
         patientList.append(patient)
         filteredPatientList = patientList
-        patientRepository.savePatientList(patientList)
-        onPatientAdded?()
+        patientRepository.addPatient(newPatient: patient)
+        onPatientChanged?()
+        
     }
     
     func updatePatient(patient:PatientModel){
@@ -55,29 +52,29 @@ class PatientViewModel{
         if let targetPatientIndex = patientList.firstIndex(where: {$0.id == patient.id}){
             patientList[targetPatientIndex] = patient
             filteredPatientList = patientList
-            patientRepository.savePatientList(patientList)
+            patientRepository.updatePatient(patient)
         }
-        onPatientUpdated?()
+        onPatientChanged?()
 
     }
     
-    func deletePatient(patientId:Int){
-        guard checkIfIdExists(id: patientId) else{
+    func deletePatient(patientToBeDeleted:PatientModel){
+        guard checkIfIdExists(id: patientToBeDeleted.id) else{
             return
         }
         
-        let newFilterList = patientList.filter{$0.id != patientId}
+        let newFilterList = patientList.filter{$0.id != patientToBeDeleted.id}
         patientList = newFilterList
         filteredPatientList = patientList
-        patientRepository.savePatientList(patientList)
-        onPatientDeleted?()
+        patientRepository.deletePatient(patientToBeDeleted)
+        onPatientChanged?()
     }
     
     func searchPatients(key:String){
         filteredPatientList = key.isEmpty
                     ? patientList
                     : patientList.filter { $0.name.lowercased().contains(key.lowercased()) }
-        onPatientSearched?()
+        onPatientChanged?()
     }
     
     
@@ -97,7 +94,7 @@ class PatientViewModel{
             }
         }
         // Name
-        let nameResult = validateTexts(text: newPatient.name, fieldName: "Patient Name")
+        let nameResult = validateTexts(text: newPatient.name, fieldName: "Name")
 
         if !nameResult.isValid {
             return (false, nil, nameResult.errorMessage)
@@ -110,7 +107,7 @@ class PatientViewModel{
         }
         
         // Diagnosis
-        let diagnosisResult = validateTexts(text: newPatient.diagnosis, fieldName: "Patient Diagnosis")
+        let diagnosisResult = validateTexts(text: newPatient.diagnosis, fieldName: "Diagnosis")
         if !diagnosisResult.isValid {
             return (false, nil,diagnosisResult.errorMessage)
         }

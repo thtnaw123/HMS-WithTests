@@ -19,6 +19,7 @@ class AddPatientViewController: UIViewController {
     @IBOutlet weak var diagnosisNameField: UITextField!
     
     @IBOutlet weak var errorMessage: UILabel!
+    
     lazy var addPatientController = AddPatientController(addPatientViewController: self,patientViewModel:PatientViewModel() )
     
     override func viewDidLoad() {

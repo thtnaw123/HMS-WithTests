@@ -12,7 +12,7 @@ extension PatientListViewController{
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         
-        patientViewModel.onPatientSearched = { [weak self] in
+        patientViewModel.onPatientChanged = { [weak self] in
                 self?.patientListTableView.reloadData()
         }
     }

@@ -10,6 +10,7 @@ import Foundation
 class AddPatientController{
     let addPatientViewController:AddPatientViewController
     var patientViewModel : PatientViewModel
+//    var onDidAdd:(()->Void)?
     
     init(addPatientViewController: AddPatientViewController, patientViewModel:PatientViewModel) {
         self.addPatientViewController = addPatientViewController
@@ -24,11 +25,9 @@ class AddPatientController{
             addPatientViewController.showErrorMessage(message: validationResult.errorMessage)
             return
         }
-        guard let validPatient = validationResult.validatedPatientDetail else{ return }
-
-        let newPatient = PatientModel(id: validPatient.id, name: validPatient.name, age: validPatient.age, diagnosis: validPatient.diagnosis)
-        patientViewModel.addPatient(patient: newPatient)
-        
+        guard let validPatient:PatientModel = validationResult.validatedPatientDetail else{ return }
+        patientViewModel.addPatient(patient: validPatient)
+//        onDidAdd?()
         addPatientViewController.goBack()
         
         

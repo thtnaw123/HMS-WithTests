@@ -46,6 +46,9 @@
                                         <color key="tintColor" name="SecondaryColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="moon" catalog="system" title=""/>
+                                        <connections>
+                                            <action selector="changeTheme:" destination="1Kc-dd-zTS" eventType="touchUpInside" id="HZ1-fj-YOp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNF-Yn-44X" userLabel="Add Button">
                                         <rect key="frame" x="353" y="0.0" width="47" height="35"/>
@@ -73,6 +76,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration" identifier="PatientListTableView"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -95,161 +99,13 @@
                     <navigationItem key="navigationItem" id="AId-zP-44S"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="changeThemeButton" destination="aMy-AY-g5H" id="h4V-gr-gpI"/>
                         <outlet property="patientListTableView" destination="xxg-oL-Rig" id="Kg3-yt-AdY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OtB-89-9Zu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1936.6412213740457" y="-106.33802816901409"/>
-        </scene>
-        <!--Add Patient View Controller-->
-        <scene sceneID="3W8-Qk-gre">
-            <objects>
-                <viewController storyboardIdentifier="AddPatientViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EQu-xh-kVf" customClass="AddPatientViewController" customModule="PatientManagementSystem" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="egQ-aP-RdY">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="ac7-Uh-IyR">
-                                <rect key="frame" x="165" y="83.666666666666686" width="100" height="112.33333333333331"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stethoscope.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="brW-jv-cFd">
-                                        <rect key="frame" x="0.0" y="0.6666666666666643" width="100" height="78.666666666666686"/>
-                                        <color key="tintColor" name="PrimaryColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="WDL-rH-pvh"/>
-                                            <constraint firstAttribute="height" constant="80" id="X2s-tB-Cfn"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PMS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5v-sg-vSR">
-                                        <rect key="frame" x="0.0" y="85.999999999999986" width="100" height="26.333333333333329"/>
-                                        <color key="tintColor" name="PrimaryColor"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ez3-ba-ji1">
-                                <rect key="frame" x="20" y="239.33333333333337" width="390" height="360"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rGH-Kv-K4i">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" systemColor="systemRedColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0cP-qP-5yz">
-                                        <rect key="frame" x="0.0" y="68.999999999999972" width="390" height="58"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient Id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDO-Sy-na8">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="IdFieldLabel"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QZS-KV-VP3">
-                                                <rect key="frame" x="0.0" y="24" width="390" height="34"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="IdTextFieldId"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="qzS-n2-Mqx">
-                                        <rect key="frame" x="0.0" y="145.99999999999997" width="390" height="58"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1W-ms-BUN">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="NameFieldLabelId"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e88-pK-X7g">
-                                                <rect key="frame" x="0.0" y="24" width="390" height="34"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="NameFieldId"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="zIc-wL-azN">
-                                        <rect key="frame" x="0.0" y="222.99999999999997" width="390" height="59.000000000000028"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stc-Hq-rda">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="AgeFieldLabelId"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGf-LI-INf">
-                                                <rect key="frame" x="0.0" y="25" width="390" height="34"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="AgeFieldId"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="2rb-qM-xjn">
-                                        <rect key="frame" x="0.0" y="301" width="390" height="59"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient diagnosis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrT-xz-1eI">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="DiagnosisFieldLabelId"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Diagnosis" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8QA-ik-YOb">
-                                                <rect key="frame" x="0.0" y="25" width="390" height="34"/>
-                                                <accessibility key="accessibilityConfiguration" identifier="DiagnosisFieldId"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p50-FP-pst">
-                                <rect key="frame" x="20" y="819.66666666666663" width="390" height="38.333333333333371"/>
-                                <color key="backgroundColor" name="SecondaryColor"/>
-                                <accessibility key="accessibilityConfiguration" identifier="AddPatientButtonId"/>
-                                <color key="tintColor" name="Background"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Add Patient"/>
-                                <connections>
-                                    <action selector="addPatientAction:" destination="EQu-xh-kVf" eventType="touchUpInside" id="aio-AH-xvg"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="Hx8-j9-lgI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="p50-FP-pst" firstAttribute="centerY" secondItem="egQ-aP-RdY" secondAttribute="centerY" multiplier="1.8" id="CAR-ym-xva"/>
-                            <constraint firstItem="ez3-ba-ji1" firstAttribute="centerY" secondItem="egQ-aP-RdY" secondAttribute="centerY" multiplier="0.9" id="GV1-m0-3ij"/>
-                            <constraint firstItem="p50-FP-pst" firstAttribute="leading" secondItem="Hx8-j9-lgI" secondAttribute="leading" constant="20" id="Y7w-5d-QFj"/>
-                            <constraint firstItem="Hx8-j9-lgI" firstAttribute="trailing" secondItem="ez3-ba-ji1" secondAttribute="trailing" constant="20" id="a7x-df-yoo"/>
-                            <constraint firstItem="Hx8-j9-lgI" firstAttribute="trailing" secondItem="p50-FP-pst" secondAttribute="trailing" constant="20" id="cn1-oX-9VS"/>
-                            <constraint firstItem="ac7-Uh-IyR" firstAttribute="centerX" secondItem="egQ-aP-RdY" secondAttribute="centerX" id="eHR-Mk-400"/>
-                            <constraint firstItem="ez3-ba-ji1" firstAttribute="leading" secondItem="Hx8-j9-lgI" secondAttribute="leading" constant="20" id="rcV-3Y-w4A"/>
-                            <constraint firstItem="ac7-Uh-IyR" firstAttribute="centerY" secondItem="egQ-aP-RdY" secondAttribute="centerY" multiplier="0.3" id="vVZ-q9-Tnm"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Naf-Ya-d0G"/>
-                    <connections>
-                        <outlet property="diagnosisNameField" destination="8QA-ik-YOb" id="4fh-SL-gVQ"/>
-                        <outlet property="errorMessage" destination="rGH-Kv-K4i" id="YLR-Fa-yDj"/>
-                        <outlet property="patientAgeField" destination="kGf-LI-INf" id="W6W-bJ-PTg"/>
-                        <outlet property="patientIdField" destination="QZS-KV-VP3" id="vTx-Wn-C9Q"/>
-                        <outlet property="patientNameField" destination="e88-pK-X7g" id="vEZ-6H-n9Y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wcc-o2-bDt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2874" y="-99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gKv-Sg-Hy1">
@@ -301,6 +157,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ej5-nP-AB1">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="errorMessageLabelId"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
@@ -396,7 +253,157 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gca-AI-OOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3713" y="-99"/>
+            <point key="canvasLocation" x="3802" y="-108"/>
+        </scene>
+        <!--Add Patient View Controller-->
+        <scene sceneID="4er-Xb-1sv">
+            <objects>
+                <viewController storyboardIdentifier="AddPatientViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="a8Y-tz-AII" customClass="AddPatientViewController" customModule="PatientManagementSystem" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FkQ-h5-ddD">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="CiG-Al-0Xv">
+                                <rect key="frame" x="165" y="83.666666666666686" width="100" height="112.33333333333331"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stethoscope.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TK8-gZ-W1U">
+                                        <rect key="frame" x="0.0" y="0.6666666666666643" width="100" height="78.666666666666686"/>
+                                        <color key="tintColor" name="PrimaryColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="o44-dv-6DO"/>
+                                            <constraint firstAttribute="height" constant="80" id="re4-KV-VzF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PMS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRj-qP-a6L">
+                                        <rect key="frame" x="0.0" y="85.999999999999986" width="100" height="26.333333333333329"/>
+                                        <color key="tintColor" name="PrimaryColor"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="K5p-r1-fCs">
+                                <rect key="frame" x="20" y="239.33333333333337" width="390" height="360"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iE-DJ-g1r">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="errorMessageLabelId"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="rJ5-F0-57S">
+                                        <rect key="frame" x="0.0" y="68.999999999999972" width="390" height="58"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient Id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZ9-4K-8lT">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="IdFieldLabel"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDJ-Oc-jG8">
+                                                <rect key="frame" x="0.0" y="24" width="390" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="IdTextFieldId"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="A6h-lr-4IQ">
+                                        <rect key="frame" x="0.0" y="145.99999999999997" width="390" height="58"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MkN-nr-ecI">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="NameFieldLabelId"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tSz-97-NgE">
+                                                <rect key="frame" x="0.0" y="24" width="390" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="NameFieldId"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Fpl-Pv-tt3">
+                                        <rect key="frame" x="0.0" y="222.99999999999997" width="390" height="59.000000000000028"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient age" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffD-jF-w0f">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AgeFieldLabelId"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nue-Gd-vs2">
+                                                <rect key="frame" x="0.0" y="25" width="390" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AgeFieldId"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="k0F-gc-BTh">
+                                        <rect key="frame" x="0.0" y="301" width="390" height="59"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" patient diagnosis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAu-Qs-Vf5">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="18"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="DiagnosisFieldLabelId"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Add Patient Diagnosis" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YU1-Wv-UJX">
+                                                <rect key="frame" x="0.0" y="25" width="390" height="34"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="DiagnosisFieldId"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4I-00-IBm">
+                                <rect key="frame" x="20" y="819.66666666666663" width="390" height="38.333333333333371"/>
+                                <color key="backgroundColor" name="SecondaryColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="AddPatientButtonId"/>
+                                <color key="tintColor" name="Background"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add Patient"/>
+                                <connections>
+                                    <action selector="addPatientAction:" destination="a8Y-tz-AII" eventType="touchUpInside" id="dc0-rX-tHK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GkI-G4-E2T"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CiG-Al-0Xv" firstAttribute="centerX" secondItem="FkQ-h5-ddD" secondAttribute="centerX" id="8jx-LR-NPR"/>
+                            <constraint firstItem="k4I-00-IBm" firstAttribute="centerY" secondItem="FkQ-h5-ddD" secondAttribute="centerY" multiplier="1.8" id="CNc-i7-t5A"/>
+                            <constraint firstItem="GkI-G4-E2T" firstAttribute="trailing" secondItem="K5p-r1-fCs" secondAttribute="trailing" constant="20" id="JYw-yp-4MW"/>
+                            <constraint firstItem="GkI-G4-E2T" firstAttribute="trailing" secondItem="k4I-00-IBm" secondAttribute="trailing" constant="20" id="Jsu-kS-uZn"/>
+                            <constraint firstItem="K5p-r1-fCs" firstAttribute="leading" secondItem="GkI-G4-E2T" secondAttribute="leading" constant="20" id="WBe-7w-8iG"/>
+                            <constraint firstItem="K5p-r1-fCs" firstAttribute="centerY" secondItem="FkQ-h5-ddD" secondAttribute="centerY" multiplier="0.9" id="rvP-Ot-ftu"/>
+                            <constraint firstItem="CiG-Al-0Xv" firstAttribute="centerY" secondItem="FkQ-h5-ddD" secondAttribute="centerY" multiplier="0.3" id="tYW-XA-TIK"/>
+                            <constraint firstItem="k4I-00-IBm" firstAttribute="leading" secondItem="GkI-G4-E2T" secondAttribute="leading" constant="20" id="zrw-yO-tE8"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="y2S-kM-o9e"/>
+                    <connections>
+                        <outlet property="diagnosisNameField" destination="YU1-Wv-UJX" id="HKv-j9-nPn"/>
+                        <outlet property="errorMessage" destination="1iE-DJ-g1r" id="qgh-aX-dxU"/>
+                        <outlet property="patientAgeField" destination="nue-Gd-vs2" id="Vkb-Ql-dKE"/>
+                        <outlet property="patientIdField" destination="nDJ-Oc-jG8" id="tF0-Ab-QpL"/>
+                        <outlet property="patientNameField" destination="tSz-97-NgE" id="gN3-rT-Q3s"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LjN-K9-e8e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2884" y="-107"/>
         </scene>
     </scenes>
     <resources>

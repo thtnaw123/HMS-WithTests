@@ -22,12 +22,14 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0k-bW-J30">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                <accessibility key="accessibilityConfiguration" identifier="PatientNameLabel"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Tm-TU-rVn">
                                 <rect key="frame" x="240" y="0.0" width="40" height="44"/>
+                                <accessibility key="accessibilityConfiguration" identifier="EditPatientButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Tqv-vQ-WLh"/>
                                 </constraints>
@@ -40,6 +42,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wq6-W2-bDZ">
                                 <rect key="frame" x="280" y="0.0" width="40" height="44"/>
+                                <accessibility key="accessibilityConfiguration" identifier="DeletePatientButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="lGr-ac-gVD"/>
                                 </constraints>

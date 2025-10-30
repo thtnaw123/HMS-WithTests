@@ -11,6 +11,8 @@ class PatientListViewController: UIViewController {
     
     @IBOutlet weak var patientListTableView: UITableView!
     
+    @IBOutlet weak var changeThemeButton: UIButton!
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     let patientViewModel = PatientViewModel()
@@ -21,20 +23,29 @@ class PatientListViewController: UIViewController {
     
     var allPatients:[PatientModel] {patientViewModel.getPatientsList}
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
         setupSearchController()
-
     }
     
+    @IBAction func changeTheme(_ sender: Any) {
+        ThemeManager.shared.changeTheme()
+        ThemeManager.shared.changeThemeButtonIcon(button: changeThemeButton)
+    }
     
     @IBAction func addPatientAction(_ sender: Any) {
         if let destinationVC = routeToPage(identifier: "AddPatientViewController") as? AddPatientViewController{
             destinationVC.addPatientController.patientViewModel = self.patientViewModel
             
+//            destinationVC.addPatientController
+//                .onDidAdd = { [weak self] in
+//                self?.patientListTableView.reloadData()
+//            }
+            
             destinationVC.addPatientController.patientViewModel
-                .onPatientAdded = { [weak self] in
+                .onPatientChanged = { [weak self] in
                 self?.patientListTableView.reloadData()
             }
             navigationController?.pushViewController(destinationVC, animated: true)

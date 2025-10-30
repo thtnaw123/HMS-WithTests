@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		85D2BBA32EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D2BBA22EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataProperties.swift */; };
+		85D2BBA42EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D2BBA12EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataClass.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		85D2CD682EACD6290090EEE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		85D2BBA12EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientModelDataEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		85D2BBA22EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PatientModelDataEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		85D2CD4E2EACD61D0090EEE0 /* PatientManagementSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PatientManagementSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D2CD672EACD6290090EEE0 /* PatientManagementSystemTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PatientManagementSystemTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D2CD712EACD6290090EEE0 /* PatientManagementSystemUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PatientManagementSystemUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +95,8 @@
 		85D2CD452EACD61D0090EEE0 = {
 			isa = PBXGroup;
 			children = (
+				85D2BBA12EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataClass.swift */,
+				85D2BBA22EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataProperties.swift */,
 				85D2CD502EACD61D0090EEE0 /* PatientManagementSystem */,
 				85D2CD6A2EACD6290090EEE0 /* PatientManagementSystemTests */,
 				85D2CD742EACD6290090EEE0 /* PatientManagementSystemUITests */,
@@ -249,6 +258,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D2BBA32EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataProperties.swift in Sources */,
+				85D2BBA42EB33B0200D8D3A2 /* PatientModelDataEntity+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

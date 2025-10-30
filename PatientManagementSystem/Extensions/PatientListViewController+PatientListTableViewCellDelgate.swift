@@ -13,7 +13,7 @@ extension PatientListViewController:PatientListTableViewCellDelgate{
             destVC.targetPatient = patient
             destVC.updatePatientController.patientViewModel = self.patientViewModel
                     
-            destVC.updatePatientController.patientViewModel.onPatientUpdated = { [weak self] in
+            destVC.updatePatientController.patientViewModel.onPatientChanged = { [weak self] in
                         DispatchQueue.main.async {
                             self?.patientListTableView.reloadData()
                         }
@@ -30,10 +30,10 @@ extension PatientListViewController:PatientListTableViewCellDelgate{
         let alert = UIAlertController(title: "confirm delete", message: "Are You Sure You wanna delete \(patient.name)?", preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler:{ _ in
-            self.patientViewModel.onPatientDeleted = {[weak self] in
+            self.patientViewModel.onPatientChanged = {[weak self] in
                 self?.patientListTableView.reloadData()
             }
-            self.patientViewModel.deletePatient(patientId: patient.id)
+            self.patientViewModel.deletePatient(patientToBeDeleted: patient)
         }))
         
         alert.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))

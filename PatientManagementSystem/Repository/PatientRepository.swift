@@ -2,65 +2,84 @@
 //  PatientRepository.swift
 //  PatientManagementSystem
 //
-//  Created by Tihitinaw Buzuwek on 26/10/2025.
+//  Created by Tihitinaw Buzuwek on 30/10/2025.
 //
 
 import Foundation
 
-class PatientRepository{
-    static let shared = PatientRepository()
-    let userDefaults = UserDefaults.standard
 
-    private init(){}
-    
-    let patient1 = PatientModel(id: 1, name: "Guluma Wakuma", age: 25, diagnosis: "malnourishment")
-    let patient2 = PatientModel(id: 2, name: "Lelisa Benti", age: 25, diagnosis: "malnourishment")
-    let patient3 = PatientModel(id: 3, name: "Abel Assefa", age: 25, diagnosis: "malnourishment")
+import Foundation
+import CoreData
 
-    lazy var patientListSeedData = [patient1, patient2, patient3]
-        
-    func initList(patientList: [PatientModel]) {
-        let encoder = JSONEncoder()
-        do{
-            let encoded = try encoder.encode(patientList)
-            PrintDebug.printDebug("init patient list")
-            UserDefaults.standard.set(encoded, forKey: "patientList")
-        }catch{
-            print("error saving data")
-        }
-    }
+final class PatientDataRepository {
+    private let context: NSManagedObjectContext
+    static let shared = PatientDataRepository()
     
-    func savePatient(_ patient:PatientModel){
-        var patientList = getPatients()
-        patientList.append(patient)
-        PrintDebug.printDebug("save patient")
-        initList(patientList: patientList)
-    }
-    
-    func savePatientList(_ patients:[PatientModel]){
-        PrintDebug.printDebug("saving all patients")
-        initList(patientList:patients)
+    private init(context: NSManagedObjectContext = CoreDataStack.shared.viewContext) {
+        self.context = context
     }
     
     func getPatients() -> [PatientModel] {
-        if let data = UserDefaults.standard.data(forKey: "patientList") {
-            let decoder = JSONDecoder()
+           let request: NSFetchRequest<PatientModelDataEntity> = PatientModelDataEntity.fetchRequest()
+           request.sortDescriptors = [NSSortDescriptor(key: "patientName", ascending: true)]
+
+           do {
+               let entities = try context.fetch(request)
+               return entities.map { $0.toDomainModel() }
+           } catch {
+               print("Fetch error: \(error)")
+               return []
+           }
+    }
+    
+    
+    func addPatient(newPatient: PatientModel) {
+        let patientModelDataEntity = PatientModelDataEntity(context: context)
+        
+        patientModelDataEntity.patientId = Int32(newPatient.id)
+        patientModelDataEntity.patientName = newPatient.name
+        patientModelDataEntity.patientAge = Int32(newPatient.age)
+        patientModelDataEntity.patientDiagnosis = newPatient.diagnosis
+        
+        
+        CoreDataStack.shared.saveContext(context: context)
+    }
+    
+    
+    func updatePatient(_ patient: PatientModel) {
+            let request: NSFetchRequest<PatientModelDataEntity> = PatientModelDataEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "patientId == %d", patient.id)
+            
             do {
-                let decoded = try decoder.decode([PatientModel].self, from: data)
-                PrintDebug.printDebug("getting patients")
-                return decoded
+                if let entity = try context.fetch(request).first {
+                    entity.patientName = patient.name
+                    entity.patientAge = Int32(patient.age)
+                    entity.patientDiagnosis = patient.diagnosis
+                    CoreDataStack.shared.saveContext(context: context)
+                }
             } catch {
-                print("Decoding failed:", error)
-                return []
+                print("Update error: \(error)")
             }
         }
-        return []
-    }
-    
-    func getPatientById(id:Int) -> PatientModel? {
-        let patientList = getPatients()
-        return patientList.first{$0.id == id}
-    }
     
     
+    func deletePatient(_ patient: PatientModel) {
+            let request: NSFetchRequest<PatientModelDataEntity> = PatientModelDataEntity.fetchRequest()
+            request.predicate = NSPredicate(format: "patientId == %d", patient.id)
+
+            do {
+                if let entity = try context.fetch(request).first {
+                    context.delete(entity)
+                    CoreDataStack.shared.saveContext(context: context)
+                }
+            } catch {
+                print("Delete error: \(error)")
+            }
+        }
+    
+    
+    
+    
+    
+
 }

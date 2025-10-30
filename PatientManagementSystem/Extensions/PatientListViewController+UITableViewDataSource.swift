@@ -11,7 +11,7 @@ extension PatientListViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearchActive
         ? patientViewModel.filteredPatientList.count
-                    : patientViewModel.patientList.count
+                    : patientViewModel.getPatientsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -19,7 +19,7 @@ extension PatientListViewController:UITableViewDataSource{
                 PatientListTableViewCell else{
             return UITableViewCell()
         }
-        let patient = isSearchActive ? patientViewModel.filteredPatientList[indexPath.row] : patientViewModel.patientList[indexPath.row]
+        let patient = isSearchActive ? patientViewModel.filteredPatientList[indexPath.row] : patientViewModel.getPatientsList[indexPath.row]
         cell.delegate = self
         cell.targetPatient = patient
         return cell
