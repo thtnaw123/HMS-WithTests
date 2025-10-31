@@ -55,35 +55,34 @@ final class PatientManagementSystemUITests: XCTestCase {
         
         let message = app.staticTexts["Patient ID is required"]
         XCTAssertTrue(message.exists)
-        
     }
     
     
     @MainActor
     func testAppAddNewPatient() throws {
-            let app = XCUIApplication()
-            app.activate()
-            app/*@START_MENU_TOKEN@*/.buttons["AddNewPatientButtonId"]/*[[".otherElements",".buttons[\"add\"]",".buttons[\"AddNewPatientButtonId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
-            app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
-            app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"98233\"]",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("89432")
-            
-            let element = app/*@START_MENU_TOKEN@*/.textFields["NameFieldId"]/*[[".otherElements",".textFields[\"Add Patient Name\"]",".textFields[\"NameFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
-            element.tap()
-            element.tap()
-            app/*@START_MENU_TOKEN@*/.textFields["NameFieldId"]/*[[".otherElements",".textFields[\"John Wic\"]",".textFields[\"Add Patient Name\"]",".textFields[\"NameFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("John Wick")
-            
-            let element2 = app/*@START_MENU_TOKEN@*/.textFields["AgeFieldId"]/*[[".otherElements",".textFields[\"Add Patient Age\"]",".textFields[\"AgeFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
-            element2.tap()
-            element2.tap()
-            app/*@START_MENU_TOKEN@*/.textFields["AgeFieldId"]/*[[".otherElements",".textFields[\"44\"]",".textFields[\"Add Patient Age\"]",".textFields[\"AgeFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("44")
-            
-            let element3 = app/*@START_MENU_TOKEN@*/.textFields["DiagnosisFieldId"]/*[[".otherElements",".textFields[\"Add Patient Diagnosis\"]",".textFields[\"DiagnosisFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
-            element3.tap()
-            element3.tap()
-            app/*@START_MENU_TOKEN@*/.textFields["DiagnosisFieldId"]/*[[".otherElements",".textFields[\"Diabets\"]",".textFields[\"Add Patient Diagnosis\"]",".textFields[\"DiagnosisFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("Diabets")
-            app.buttons["AddPatientButtonId"].firstMatch.tap()
+        let app = XCUIApplication()
+        app.activate()
+        app/*@START_MENU_TOKEN@*/.buttons["AddNewPatientButtonId"]/*[[".otherElements",".buttons[\"add\"]",".buttons[\"AddNewPatientButtonId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["IdTextFieldId"]/*[[".otherElements",".textFields[\"98233\"]",".textFields[\"Add Patient Id\"]",".textFields[\"IdTextFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("89432")
+        
+        let element = app/*@START_MENU_TOKEN@*/.textFields["NameFieldId"]/*[[".otherElements",".textFields[\"Add Patient Name\"]",".textFields[\"NameFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
+        element.tap()
+        element.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["NameFieldId"]/*[[".otherElements",".textFields[\"John Wic\"]",".textFields[\"Add Patient Name\"]",".textFields[\"NameFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("John Wick")
+        
+        let element2 = app/*@START_MENU_TOKEN@*/.textFields["AgeFieldId"]/*[[".otherElements",".textFields[\"Add Patient Age\"]",".textFields[\"AgeFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
+        element2.tap()
+        element2.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["AgeFieldId"]/*[[".otherElements",".textFields[\"44\"]",".textFields[\"Add Patient Age\"]",".textFields[\"AgeFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("44")
+        
+        let element3 = app/*@START_MENU_TOKEN@*/.textFields["DiagnosisFieldId"]/*[[".otherElements",".textFields[\"Add Patient Diagnosis\"]",".textFields[\"DiagnosisFieldId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
+        element3.tap()
+        element3.tap()
+        app/*@START_MENU_TOKEN@*/.textFields["DiagnosisFieldId"]/*[[".otherElements",".textFields[\"Diabets\"]",".textFields[\"Add Patient Diagnosis\"]",".textFields[\"DiagnosisFieldId\"]"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.typeText("Diabets")
+        app.buttons["AddPatientButtonId"].firstMatch.tap()
           
-        }
+    }
   
    
     @MainActor
@@ -92,7 +91,6 @@ final class PatientManagementSystemUITests: XCTestCase {
         app.activate()
         app/*@START_MENU_TOKEN@*/.searchFields["Search"].firstMatch/*[[".otherElements.searchFields[\"Search\"].firstMatch",".searchFields",".containing(.image, identifier: \"magnifyingglass\").firstMatch",".firstMatch",".searchFields[\"Search\"].firstMatch"],[[[-1,4],[-1,1,1],[-1,0]],[[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.tap()
         app/*@START_MENU_TOKEN@*/.searchFields["Search"].firstMatch/*[[".otherElements.searchFields[\"Search\"].firstMatch",".searchFields",".containing(.button, identifier: \"Clear text\").firstMatch",".containing(.image, identifier: \"magnifyingglass\").firstMatch",".firstMatch",".searchFields[\"Search\"].firstMatch"],[[[-1,5],[-1,1,1],[-1,0]],[[-1,4],[-1,3],[-1,2]]],[0]]@END_MENU_TOKEN@*/.typeText("Guluma Wakuma")
-    
     }
     
     @MainActor
@@ -101,7 +99,6 @@ final class PatientManagementSystemUITests: XCTestCase {
         let app = XCUIApplication()
         app.activate()
         app/*@START_MENU_TOKEN@*/.buttons["AddNewPatientButtonId"]/*[[".otherElements",".buttons[\"add\"]",".buttons[\"AddNewPatientButtonId\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch.tap()
-        
         let element = app/*@START_MENU_TOKEN@*/.buttons["BackButton"]/*[[".navigationBars",".buttons",".buttons[\"Back\"]",".buttons[\"BackButton\"]"],[[[-1,3],[-1,2],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.firstMatch
         element.tap()
         app.buttons.matching(identifier: "EditPatientButton").element(boundBy: 1).tap()

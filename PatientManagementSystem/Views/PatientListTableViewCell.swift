@@ -47,3 +47,4 @@ class PatientListTableViewCell: UITableViewCell {
         delegate?.deletePatientData(patient: targetPatient)
     }
 }
+    

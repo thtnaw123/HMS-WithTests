@@ -8,7 +8,7 @@
 import UIKit
 
 extension PatientListViewController{
-    func setupSearchController() {
+    func setUpSearchController() {
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
     }

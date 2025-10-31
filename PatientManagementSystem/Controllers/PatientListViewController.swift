@@ -20,16 +20,17 @@ class PatientListViewController: UIViewController {
     var isSearchActive: Bool {
          return searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
     }
-    
-    var allPatients:[PatientModel] {patientViewModel.getPatientsList}
-    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTableView()
-        setupSearchController()
+        setUpSearchController()
         setUpClosureBinding()
-        
+    }
+    
+    deinit{
+      print("patient view controller is deallocated")
     }
     
     @IBAction func changeTheme(_ sender: Any) {
@@ -44,11 +45,12 @@ class PatientListViewController: UIViewController {
 //            destinationVC.addPatientController
 //                .onDidAdd = { [weak self] in
 //                self?.patientListTableView.reloadData()
-//            }
-    
+//            }    
             navigationController?.pushViewController(destinationVC, animated: true)
         }
     }
+    
+
     
     func setUpTableView(){
         let nib = UINib(nibName: "PatientListTableViewCell", bundle: nil)

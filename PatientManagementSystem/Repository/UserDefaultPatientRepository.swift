@@ -30,9 +30,9 @@ class PatientRepository{
         }
     }
     
-    func savePatient(_ patient:PatientModel){
+    func savePatient(newPatient:PatientModel){
         var patientList = getPatients()
-        patientList.append(patient)
+        patientList.append(newPatient)
         PrintDebug.printDebug("save patient")
         initList(patientList: patientList)
     }

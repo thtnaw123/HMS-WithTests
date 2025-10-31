@@ -9,7 +9,7 @@ import UIKit
 
 
 class PatientViewModel{
-    var patientRepository = PatientDataRepository.shared;
+    var patientRepository = PatientDataRepository.shared
     private var patientList:[PatientModel] = []
     var filteredPatientList:[PatientModel] = []
     
@@ -49,11 +49,11 @@ class PatientViewModel{
         guard checkIfIdExists(id: patient.id) else{
             return
         }
-        if let targetPatientIndex = patientList.firstIndex(where: {$0.id == patient.id}){
-            patientList[targetPatientIndex] = patient
-            filteredPatientList = patientList
+//        if let _ = patientList.firstIndex(where: {$0.id == patient.id}){
+//            patientList[targetPatientIndex] = patient
+//            filteredPatientList = patientList
             patientRepository.updatePatient(patient)
-        }
+//        }
         onPatientChanged?()
 
     }
@@ -63,17 +63,17 @@ class PatientViewModel{
             return
         }
         
-        let newFilterList = patientList.filter{$0.id != patientToBeDeleted.id}
-        patientList = newFilterList
-        filteredPatientList = patientList
+//        let newFilterList = patientList.filter{$0.id != patientToBeDeleted.id}
+//        patientList = newFilterList
+//        filteredPatientList = patientList
         patientRepository.deletePatient(patientToBeDeleted)
         onPatientChanged?()
     }
     
     func searchPatients(key:String){
         filteredPatientList = key.isEmpty
-                    ? patientList
-                    : patientList.filter { $0.name.lowercased().contains(key.lowercased()) }
+                    ? getPatientsList
+                    : getPatientsList.filter { $0.name.lowercased().contains(key.lowercased()) }
         onPatientChanged?()
     }
     

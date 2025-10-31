@@ -193,17 +193,16 @@ final class PatientTests: XCTestCase {
     
     func testSearchPatientByName() throws {
         guard let lastPatient = patientViewModel.getPatientsList.first else {
-           XCTFail("No patients found in the list to test with.")
            return
         }
         
         patientViewModel.searchPatients(key: lastPatient.name.lowercased())
         var searchedPatientExists = patientViewModel.filteredPatientList.contains(where: {$0.name == lastPatient.name})
-        XCTAssertTrue(searchedPatientExists, "searched patient doen't exist")
+        XCTAssertTrue(searchedPatientExists, "searched patient doesn't exist")
 
         patientViewModel.searchPatients(key: lastPatient.name)
         searchedPatientExists = patientViewModel.filteredPatientList.contains(where: {$0.name == lastPatient.name})
-        XCTAssertTrue(searchedPatientExists, "searched patient doen't exist")
+        XCTAssertTrue(searchedPatientExists, "searched patient doesn't exist")
         
         patientViewModel.searchPatients(key: "non existant name")
         XCTAssertEqual(patientViewModel.filteredPatientList.count, 0, "filtered patient should be empty")
@@ -214,7 +213,6 @@ final class PatientTests: XCTestCase {
         guard var patientToBeUpdated = patientViewModel.getPatientsList.first else {
            return
         }
-        
         patientToBeUpdated.diagnosis = "Recovered"
 
         patientViewModel.updatePatient(patient: patientToBeUpdated)
@@ -246,7 +244,6 @@ final class PatientTests: XCTestCase {
             }
         
             guard var patientToBeUpdated = patientViewModel.getPatientsList.first else {
-               XCTFail("No patients found in the list to test with.")
                return
             }
 

@@ -66,7 +66,6 @@ final class PatientDataRepository {
     func deletePatient(_ patient: PatientModel) {
             let request: NSFetchRequest<PatientModelDataEntity> = PatientModelDataEntity.fetchRequest()
             request.predicate = NSPredicate(format: "patientId == %d", patient.id)
-
             do {
                 if let entity = try context.fetch(request).first {
                     context.delete(entity)

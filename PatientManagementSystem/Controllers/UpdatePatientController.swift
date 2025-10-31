@@ -24,11 +24,9 @@ class UpdatePatientController{
             updatePatientViewController.showErrorMessage(message: validationResult.errorMessage)
             return
         }
-        guard let validPatient = validationResult.validatedPatientDetail else{ return }
-
-        let updatedPatient = PatientModel(id:pId, name: validPatient.name, age: validPatient.age, diagnosis: validPatient.diagnosis)
+        guard let validPatient:PatientModel = validationResult.validatedPatientDetail else{ return }
         
-        patientViewModel.updatePatient(patient: updatedPatient)
+        patientViewModel.updatePatient(patient: validPatient)
         updatePatientViewController.goBack()
     }
 }
