@@ -12,6 +12,7 @@ class PatientListViewController: UIViewController {
     @IBOutlet weak var patientListTableView: UITableView!
     
     @IBOutlet weak var changeThemeButton: UIButton!
+   
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -66,10 +67,11 @@ class PatientListViewController: UIViewController {
     }
     
     func routeToPage(identifier:String) -> UIViewController? {
-        if let destinationVC = storyboard?.instantiateViewController(withIdentifier: identifier){
-            return destinationVC
-        }
-        return nil
+        let storyb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destinationVC = storyboard?.instantiateViewController(withIdentifier: identifier)
+        return destinationVC
+        
+//        return nil
     }
 
 }

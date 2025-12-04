@@ -25,5 +25,47 @@ extension PatientListViewController:UITableViewDataSource{
         return cell
     }
     
+    // MARK: - Swipe Actions
+    func tableView(_ tableView: UITableView,
+                                trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
+                                -> UISwipeActionsConfiguration? {
+            
+
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, completion in
+//                self.data.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                completion(true)
+            }
+            let editAction = UIContextualAction(style: .normal, title: "Edit") { _, _, completion in
+                self.showEditAlert(for: indexPath)
+                completion(true)
+            }
+            editAction.backgroundColor = .systemBlue
+            
+            let config = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+            return config
+        }
+    
+    
+    // MARK: - Edit Helper
+        func showEditAlert(for indexPath: IndexPath) {
+            let alert = UIAlertController(title: "Edit Item",
+                                          message: "Change the name:",
+                                          preferredStyle: .alert)
+//            alert.addTextField { textField in
+//                textField.text = self.data[indexPath.row]
+//            }
+//            
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//            alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { _ in
+//                if let newText = alert.textFields?.first?.text, !newText.isEmpty {
+//                    self.data[indexPath.row] = newText
+//                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+//                }
+//            }))
+            
+            present(alert, animated: true)
+        }
+    
     
 }

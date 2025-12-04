@@ -1,0 +1,6 @@
+framework module Pods_PatientManagementSystem_PatientManagementSystemUITests {
+  umbrella header "Pods-PatientManagementSystem-PatientManagementSystemUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

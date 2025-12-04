@@ -20,7 +20,7 @@ final class CoreDataStack {
                 fatalError("Unresolved error loading store: \(error), \(error.userInfo)")
             }
         }
-
+    
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
     }
 

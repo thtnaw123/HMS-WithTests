@@ -6,10 +6,7 @@
 //
 
 import Foundation
-
-
-import Foundation
-import CoreData
+internal import CoreData
 
 final class PatientDataRepository {
     private let context: NSManagedObjectContext
@@ -30,6 +27,7 @@ final class PatientDataRepository {
                print("Fetch error: \(error)")
                return []
            }
+        
     }
     
     

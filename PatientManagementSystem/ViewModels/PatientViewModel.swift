@@ -9,7 +9,8 @@ import UIKit
 
 
 class PatientViewModel{
-    var patientRepository = PatientDataRepository.shared
+    var patientRepository = YapRepository()
+    
     private var patientList:[PatientModel] = []
     var filteredPatientList:[PatientModel] = []
     
@@ -42,6 +43,7 @@ class PatientViewModel{
         filteredPatientList = patientList
         patientRepository.addPatient(newPatient: patient)
         onPatientChanged?()
+        
         
     }
     
